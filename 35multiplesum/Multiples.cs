@@ -49,9 +49,7 @@ namespace _35multiplesum
 
             Console.WriteLine();
 
-            Tuple<List<int>, int> inputs = new Tuple<List<int>, int>(new List<int> { base1, base2 }, scope);
-
-            GetMultiples(inputs);
+            GetMultiples(new List<int> { base1, base2 }, scope);
 
             Console.WriteLine();
             Console.WriteLine("Press enter to exit");
@@ -91,22 +89,20 @@ namespace _35multiplesum
                 return;
             }
 
-            Tuple<List<int>, int> inputs = new Tuple<List<int>, int>(bases, maxScope);
-
-            GetMultiples(inputs);
+            GetMultiples(bases, maxScope);
         }
 
-        public void GetMultiples(Tuple<List<int>, int> input)
+        public void GetMultiples(List<int> bases, int maxScope)
         {
             // Call service and output results
-            if (input.Item1.Any())
+            if (bases.Any())
             {
                 try
                 {
-                    Tuple<List<int>, int> multiplesAndSum = _multipleService.GetSumOfMultiples(input.Item1, input.Item2);
+                    Tuple<List<int>, int> multiplesAndSum = _multipleService.GetSumOfMultiples(bases, maxScope);
 
                     Console.WriteLine();
-                    Console.WriteLine("For bases: " + string.Join(',', input.Item1) + " and maximum scope: " + input.Item2);
+                    Console.WriteLine("For bases: " + string.Join(',', bases) + " and maximum scope: " + maxScope);
                     if (multiplesAndSum.Item1.Any())
                     {
                         Console.WriteLine("multiples found: " + string.Join(',', multiplesAndSum.Item1));

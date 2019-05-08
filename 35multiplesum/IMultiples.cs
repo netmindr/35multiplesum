@@ -10,6 +10,6 @@ namespace _35multiplesum
 
         void Run(string[] args);
 
-        void GetMultiples(Tuple<List<int>, int> input);
+        void GetMultiples(List<int> bases, int maxScope);
     }
 }

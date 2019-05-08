@@ -21,10 +21,10 @@ namespace _35multiplesum.Test
         {
             List<int> bases = new List<int> { 3, 5 };
             int maxScope = 100;
-            Tuple<List<int>, int> input = new Tuple<List<int>, int>(bases, maxScope);
+
             IMultiples target = new Multiples(_mockMultipleService.Object);
 
-            target.GetMultiples(input);
+            target.GetMultiples(bases, maxScope);
 
             _mockMultipleService.Verify(x => x.GetSumOfMultiples(bases, maxScope), Times.Once);
         }
@@ -35,10 +35,10 @@ namespace _35multiplesum.Test
         {
             List<int> bases = new List<int>();
             int maxScope = 100;
-            Tuple<List<int>, int> input = new Tuple<List<int>, int>(bases, maxScope);
+
             IMultiples target = new Multiples(_mockMultipleService.Object);
 
-            target.GetMultiples(input);
+            target.GetMultiples(bases, maxScope);
 
             _mockMultipleService.Verify(x => x.GetSumOfMultiples(It.IsAny<List<int>>(), It.IsAny<int>()), Times.Never);
         }
