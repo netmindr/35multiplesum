@@ -1,6 +1,4 @@
-﻿using _35multiplesum.BL;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace _35multiplesum
 {
@@ -8,26 +6,18 @@ namespace _35multiplesum
     {
         static void Main(string[] args)
         {
-            // Setup DI
-            ServiceProvider serviceProvider = new ServiceCollection()
-                .AddLogging()
-                .AddSingleton<IMultipleService, MultipleService>()
-                .AddSingleton<IMultiples, Multiples>()
-                .AddLogging(opt =>
-                {
-                    opt.AddConsole();
-                    opt.AddDebug();
-                })
-                .BuildServiceProvider();
+            ServiceProvider provider = Configuration.ConfigureApplication();
 
-            ILogger<Program> logger = serviceProvider.GetService<ILoggerFactory>()
-                .CreateLogger<Program>();
-            logger.LogDebug("Starting application");
+            IMultiples multiples = provider.GetService<IMultiples>();
 
-            // Call entry point
-            IMultiples multiples = serviceProvider.GetService<IMultiples>();
-
-            multiples.Run();
+            if (args.Length > 0)
+            {
+                multiples.Run(args);
+            }
+            else
+            {
+                multiples.Run();
+            }
         }
     }
 }
