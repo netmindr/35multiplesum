@@ -8,6 +8,11 @@ namespace _35multiplesum.BL
     {
         public Tuple<List<int>, int> GetSumOfMultiples(List<int> bases, int maxScope)
         {
+            if (bases == null || !bases.Any() || bases.Any(x => x <= 0) || bases.Any(x => x > maxScope))
+            {
+                throw new ArgumentException();
+            }
+
             int sum = 0;
             List<int> multiples = new List<int>();
 

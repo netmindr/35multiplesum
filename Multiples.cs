@@ -48,23 +48,36 @@ namespace _35multiplesum
                     scopeInput = Console.ReadLine();
                 }
 
+                Console.WriteLine();
+
                 Tuple<List<int>, int> response = new Tuple<List<int>, int>(new List<int> { base1, base2 }, scope);
 
                 // Call service and output results
                 if (response.Item1.Any())
                 {
-                    Tuple<List<int>, int> multiplesAndSum = _multipleService.GetSumOfMultiples(response.Item1, response.Item2);
+                    try
+                    {
+                        Tuple<List<int>, int> multiplesAndSum = _multipleService.GetSumOfMultiples(response.Item1, response.Item2);
 
-                    Console.WriteLine();
-                    Console.WriteLine("For bases: " + string.Join(',', response.Item1) + " and maximum scope: " + response.Item2);
-                    if (multiplesAndSum.Item1.Any())
-                    {
-                        Console.WriteLine("multiples found: " + string.Join(',', multiplesAndSum.Item1));
-                        Console.WriteLine("Sum: " + multiplesAndSum.Item2);
+                        Console.WriteLine();
+                        Console.WriteLine("For bases: " + string.Join(',', response.Item1) + " and maximum scope: " + response.Item2);
+                        if (multiplesAndSum.Item1.Any())
+                        {
+                            Console.WriteLine("multiples found: " + string.Join(',', multiplesAndSum.Item1));
+                            Console.WriteLine("Sum: " + multiplesAndSum.Item2);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No multiples found - Sum: " + multiplesAndSum.Item2);
+                        }
                     }
-                    else
+                    catch (ArgumentException e)
                     {
-                        Console.WriteLine("No multiples found - Sum: " + multiplesAndSum.Item2);
+                        Console.WriteLine("Invalid inputs!");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"An unhandled exception occurred: {e.Message}");
                     }
                 }
                 else
