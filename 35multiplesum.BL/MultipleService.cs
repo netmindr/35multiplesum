@@ -18,7 +18,6 @@ namespace _35multiplesum.BL
                     multiples.Add(i);
                     sum += i;
                 }
-                //sum += bases.FirstOrDefault(x => i % x == 0) == 0 ? i : 0;
             }
             return new Tuple<List<int>, int>(multiples, sum);
         }

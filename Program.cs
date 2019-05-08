@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using _35multiplesum.BL;
+﻿using _35multiplesum.BL;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -30,8 +28,6 @@ namespace _35multiplesum
             IMultiples multiples = serviceProvider.GetService<IMultiples>();
 
             multiples.Run();
-
-            logger.LogDebug("All done!");
         }
     }
 }
