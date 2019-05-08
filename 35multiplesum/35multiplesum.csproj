@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="35multiplesum.BL\35multiplesum.BL.csproj" />
+    <ProjectReference Include="..\35multiplesum.BL\35multiplesum.BL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
